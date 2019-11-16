@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class Head : MonoBehaviour
 {
     [SerializeField]
     private Tail tailprefab;
+    private GameHandler gamehandler;
 
     private float dir = 0f;
     private Vector3 pytdir3;
@@ -20,6 +22,11 @@ public class Head : MonoBehaviour
         
     [SerializeField]
     private float speed = 30;
+
+    internal void SetGameHandler(GameHandler gh)
+    {
+        gamehandler = gh;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +49,7 @@ public class Head : MonoBehaviour
 
         if (turnrate != headturn)
         {
+            gamehandler.CreateTimestamp(turnrate);
             headturn = turnrate;
             tailroutine = Taildelay(turnrate);
             StartCoroutine(tailroutine);
