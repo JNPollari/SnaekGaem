@@ -57,12 +57,12 @@ public class GameHandler : MonoBehaviour
                 UnityEngine.Random.Range(-halfHeight, halfHeight),
                 0),
                 new Quaternion(0, 0, 0, 0));
-        _snack.Initialize(this, states[0]);
+        _snack.Initialize(this, states[0], snakehead.GetTails());
 
     }
 
-    internal void createReverseSnake(State state, int stateCount) {
+    internal void createReverseSnake(State state, int stateCount, int tails) {
         ReverseHead _reverseSnake = Instantiate(reverseSnake, state.GetPosition(), state.GetRotation());
-        _reverseSnake.Initialize(states, state, stateCount, offset);
+        _reverseSnake.Initialize(states, state, stateCount, offset, tails);
     }
 }

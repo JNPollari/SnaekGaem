@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReverseHead : MonoBehaviour
+public class ReverseTail : MonoBehaviour
 {
     [SerializeField]
     private ReverseTail tailprefab;
@@ -13,45 +12,36 @@ public class ReverseHead : MonoBehaviour
     private List<State> states;
     private int offset;
     private State currentState;
-    private int stateCount;
     private int lifeTime;
-    private int tails;
 
     // Initialize should be calles as the tailpiece is first created
-    public void Initialize(List<State> _states, State _initialState, int _stateCount, int _offset, int _tails)
+    public void Initialize(List<State> _states, int _offset, int _lifeTime)
     {
-        currentState = _initialState;
         states = _states;
-        stateCount = _stateCount;
         offset = _offset;
-        lifeTime = _stateCount;
-        tails = _tails;
+        lifeTime = _lifeTime;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        currentState = states[stateCount];
-        stateCount += 2;
+        offset += 2;
         lifeTime--;
-        transform.position = currentState.GetPosition();
-        transform.rotation = currentState.GetRotation();
         if (lifeTime == 0) {
             Destroy(gameObject);
         }
-        if (tails > 0) {
-            Spawntail();
-        }
-        tails--;
+        currentState = states[offset];
+        transform.position = currentState.GetPosition();
+        transform.rotation = currentState.GetRotation();
     }
+
 
     internal void Spawntail()
     {
         if (tail == null)
         {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(states, stateCount - 5, lifeTime);
+            tail.Initialize(states, offset - 5, lifeTime);
         }
         else
         {
@@ -59,3 +49,4 @@ public class ReverseHead : MonoBehaviour
         }
     }
 }
+
