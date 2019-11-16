@@ -7,8 +7,8 @@ public class Snack : MonoBehaviour
 {
     private SoundController soundcontroller;
 
-    public void SetSoundController(sc) {
-	soundcontroller = cs;
+    public void SetSoundController(SoundController sc) {
+	soundcontroller = sc;
     }
     // Start is called before the first frame update
     void Start()
