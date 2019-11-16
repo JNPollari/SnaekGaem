@@ -7,10 +7,11 @@ public class Head : MonoBehaviour
     [SerializeField]
     private Tail tailprefab;
 
-    private float dir = 10.0f;
+    private float dir = 0f;
     private Vector3 pytdir3;
 
     private IEnumerator tailroutine;
+    private float tailDelayTime = 0.25f;
 
     private Tail tail;
     private float headturn = 0;
@@ -42,12 +43,12 @@ public class Head : MonoBehaviour
             StartCoroutine(tailroutine);
         }
 
-        if (tailturn != 0 && tail != null)
+        if (tail != null)
         {
             tail.Turn(tailturn);
         }
         
-        transform.eulerAngles = new Vector3(0, 0, 2* dir);
+        transform.eulerAngles = new Vector3(0, 0, 2 * dir);
 
         pytdir3.x = dir;
         pytdir3.y = dir;
@@ -58,7 +59,7 @@ public class Head : MonoBehaviour
 
     IEnumerator Taildelay(float axis)
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(tailDelayTime);
         tailturn = axis;
 
     }
@@ -68,7 +69,10 @@ public class Head : MonoBehaviour
         if (tail == null)
         {
             tail = Instantiate(tailprefab, transform.position, Quaternion.identity);
-            tail.Initialize(dir, speed);
+            tail.Initialize(dir, speed, tailDelayTime);
+        } else
+        {
+            tail.Spawntail();
         }
     }
 
