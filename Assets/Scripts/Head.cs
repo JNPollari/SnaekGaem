@@ -7,7 +7,7 @@ public class Head : MonoBehaviour
 {
     [SerializeField]
     private Tail tailprefab;
-    private GameHandler gamehandler;
+    private GameHandler gameHandler;
     
     [SerializeField]
     private GameObject snack;
@@ -15,12 +15,7 @@ public class Head : MonoBehaviour
     private float dir = 0;
     private int turnDirection = 1;
 
-    private IEnumerator tailroutine;
-    private float tailDelayTime = 0.05f;
-
     private Tail tail;
-    private int headturn = 0;
-    private int tailturn = 0;
         
     [SerializeField]
     private float speed;
@@ -29,25 +24,19 @@ public class Head : MonoBehaviour
 
     private int score = 0;
     private int tails = 4;
+    private int offset;
 
     private List<State> states;
 
 
     internal void SetGameHandler(GameHandler gh)
     {
-        gamehandler = gh;
+        gameHandler = gh;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        states = new List<State>();
-        // tail = Instantiate(tailprefab, transform.position, transform.rotation);
-        // tail.Initialize(states, 5);
-        // for (int i=0; i < tails - 1; i++) {
-        //     tail.Spawntail();
-        // }
-        
+
     }
 
     void FixedUpdate() { 
@@ -77,11 +66,16 @@ public class Head : MonoBehaviour
     internal void growTail() {
         if (tail == null) {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(states, 5);
+            tail.Initialize(states, offset);
         } else {
             tail.Spawntail();
         }
     }
 
+    internal void Initialize(GameHandler _gameHandler, List<State> _states, int _offset) {
+        gameHandler = _gameHandler;
+        states = _states;
+        offset = _offset;
+    }
 
 }

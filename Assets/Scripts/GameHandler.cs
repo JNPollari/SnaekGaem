@@ -9,7 +9,7 @@ public class GameHandler : MonoBehaviour
     private Head snakehead;
 
     [SerializeField]
-    private PastHead pastsnake;
+    private ReverseHead reverseSnake;
 
     [SerializeField]
     private Snack snackprefab;    
@@ -17,6 +17,8 @@ public class GameHandler : MonoBehaviour
     private List<State> states;
 
     private int score = 0;
+    [SerializeField]
+    private int offset = 5; // Offset between tail pieces.
 
     private float sceneWidth = 10;
     private float sceneHeight = 10;
@@ -25,9 +27,14 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         states = new List<State>();
-        createSnack();
         snakehead = Instantiate(snakehead, transform.position, Quaternion.identity);
-        //snakehead.Initialize(this, states);
+        snakehead.Initialize(this, states, offset);
+        StartCoroutine("FirstSnack");
+    }
+
+    IEnumerator FirstSnack() {
+        yield return new WaitForSeconds(2);
+        createSnack();
     }
 
     // Update is called once per frame
@@ -50,6 +57,12 @@ public class GameHandler : MonoBehaviour
                 UnityEngine.Random.Range(-halfHeight, halfHeight),
                 0),
                 new Quaternion(0, 0, 0, 0));
-        _snack.Initialize(this);
+        _snack.Initialize(this, states[0]);
+
+    }
+
+    internal void createReverseSnake(State state, int stateCount) {
+        ReverseHead _reverseSnake = Instantiate(reverseSnake, state.GetPosition(), state.GetRotation());
+        _reverseSnake.Initialize(states, state, stateCount, offset);
     }
 }

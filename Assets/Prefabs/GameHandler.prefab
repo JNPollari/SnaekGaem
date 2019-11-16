@@ -45,9 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakehead: {fileID: 6470904045392878327, guid: 9a9e33fd0f8b8d3e981d7cf9c6cb914a,
     type: 3}
-  pastsnake: {fileID: 6957240112997041737, guid: cc806565b4f305b49ad9f836848fb74d,
+  reverseSnake: {fileID: 6957240112997041737, guid: cc806565b4f305b49ad9f836848fb74d,
     type: 3}
   snackprefab: {fileID: 1675567848407459024, guid: 64fcc7de4cd0d574abd36154e27719b7,
     type: 3}
-  soundController: {fileID: -3350538642697038628, guid: 314bf492e3e2b4488bd60bc46d0efec4,
-    type: 3}
+  offset: 5

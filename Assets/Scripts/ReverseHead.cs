@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PastHead : MonoBehaviour
+public class ReverseHead : MonoBehaviour
 {
     [SerializeField]
     private Tail tailprefab;
@@ -13,18 +13,22 @@ public class PastHead : MonoBehaviour
     private List<State> states;
     private int offset;
     private State currentState;
+    private int stateCount;
 
     // Initialize should be calles as the tailpiece is first created
-    public void Initialize(List<State> _states, int _offset)
+    public void Initialize(List<State> _states, State _initialState, int _stateCount, int _offset)
     {
+        currentState = _initialState;
         states = _states;
+        stateCount = _stateCount;
         offset = _offset;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        currentState = states[offset];
+        currentState = states[stateCount];
+        stateCount += 2;
         transform.position = currentState.GetPosition();
         transform.rotation = currentState.GetRotation();
     }

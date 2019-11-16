@@ -9,6 +9,9 @@ public class Snack : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField]
     private AudioClip audioClip;
+    private State state;
+    private int stateCount = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +25,19 @@ public class Snack : MonoBehaviour
         
     }
 
-    internal void Initialize(GameHandler _gameHandler) {
+    void FixedUpdate() {
+        stateCount++;
+    }
+
+    internal void Initialize(GameHandler _gameHandler, State _state) {
         gameHandler = _gameHandler;
+        state = _state;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
             Debug.Log("Snack eaten.");
+            gameHandler.createReverseSnake(state, stateCount);
             gameHandler.incrementScore(1);
             gameHandler.createSnack();
             audioSource.PlayOneShot(audioClip);
