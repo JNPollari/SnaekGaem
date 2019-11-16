@@ -2,14 +2,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReverseHead : MonoBehaviour
 {
     [SerializeField]
     private ReverseTail tailprefab;
-
+    private ReverseHeadSprite spriteHandler;
+    
     private float dir = 00f;
     private ReverseTail tail;
+
+    internal void SetSprite(ReverseHeadSprite _reverseHeadSprite)
+    {
+        spriteHandler = _reverseHeadSprite;
+    }
+
+
+
     private List<State> states;
     private int offset;
     private State currentState;
@@ -38,7 +48,9 @@ public class ReverseHead : MonoBehaviour
         transform.position = currentState.GetPosition();
         transform.rotation = currentState.GetRotation();
         if (lifeTime == 0) {
-            Destroy(gameObject);
+            if (tail != null) tail.Fade();
+            spriteHandler.FadeOut();
+            Destroy(gameObject, 1);
         }
         if (tails > 0) {
             Spawntail();
@@ -56,6 +68,14 @@ public class ReverseHead : MonoBehaviour
         else
         {
             tail.Spawntail();
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("menuscene");
         }
     }
 }

@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ReverseTail : MonoBehaviour
 {
     [SerializeField]
     private ReverseTail tailprefab;
+    private ReverseTailSprite spriteHandler;
 
     private float dir = 00f;
     private ReverseTail tail;
@@ -13,6 +16,11 @@ public class ReverseTail : MonoBehaviour
     private int offset;
     private State currentState;
     private int lifeTime;
+
+    internal void SetSprite(ReverseTailSprite reverseTailSprite)
+    {
+        spriteHandler = reverseTailSprite;
+    }
 
     // Initialize should be calles as the tailpiece is first created
     public void Initialize(List<State> _states, int _offset, int _lifeTime)
@@ -28,7 +36,8 @@ public class ReverseTail : MonoBehaviour
         offset += 2;
         lifeTime--;
         if (lifeTime == 0) {
-            Destroy(gameObject);
+            spriteHandler.FadeOut();
+            Destroy(gameObject, 1);
         }
         currentState = states[offset];
         transform.position = currentState.GetPosition();
@@ -41,11 +50,29 @@ public class ReverseTail : MonoBehaviour
         if (tail == null)
         {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(states, offset - 5, lifeTime);
+            tail.Initialize(states, offset - 2, lifeTime);
         }
         else
         {
             tail.Spawntail();
+        }
+    }
+
+    internal void Fade()
+    {
+        Debug.Log("Fade Called!!!");
+        if (tail != null) tail.Fade();
+        spriteHandler.FadeOut();
+        Destroy(gameObject, 2);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("joku osu häntään!!!");
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("pelaaja osu häntään!!!");
+            SceneManager.LoadScene("menuscene");
         }
     }
 }

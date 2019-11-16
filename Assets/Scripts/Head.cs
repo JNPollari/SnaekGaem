@@ -48,14 +48,9 @@ public class Head : MonoBehaviour
         }
     }
 
-    void FixedUpdate() { 
+    void FixedUpdate()
+    { 
         states.Insert(0, new State(transform.position, transform.rotation));
-        Debug.Log(states);
-
-        // tails--;
-        // if (tails%10 == 0 && tails > 0) {
-        //     growTail();
-        // }
     }
 
     void Update()

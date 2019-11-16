@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7751913927396331921}
   - component: {fileID: 6957240112997041737}
+  - component: {fileID: 747343789371334983}
+  - component: {fileID: 5751987976769935228}
   m_Layer: 0
   m_Name: ReverseHead
   m_TagString: Untagged
@@ -46,6 +48,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tailprefab: {fileID: -1294146634506104687, guid: 7e1897c92659cc7e3b2edb05f90d13e5,
     type: 3}
+--- !u!58 &747343789371334983
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461126231908879206}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.029063135, y: 0.043594733}
+  serializedVersion: 2
+  m_Radius: 0.4782027
+--- !u!50 &5751987976769935228
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461126231908879206}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &4726834987357887528
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,6 +95,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1306584464569848425}
   - component: {fileID: 6238045038915469711}
+  - component: {fileID: 6298757135572145228}
   m_Layer: 0
   m_Name: Spriteholder
   m_TagString: Untagged
@@ -116,7 +156,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7f4dbb275bd9c0700ab4763acc57d89f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,3 +166,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6298757135572145228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4726834987357887528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 649a9af7e3f7efb4faebf72110d53c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

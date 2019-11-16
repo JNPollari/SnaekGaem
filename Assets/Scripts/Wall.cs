@@ -18,8 +18,6 @@ public class Wall : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-	Debug.Log(collision);
-	Debug.Log("Hit wall");
 	SceneManager.LoadScene("menuscene");
     }
 }

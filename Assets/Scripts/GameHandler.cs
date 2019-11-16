@@ -33,7 +33,7 @@ public class GameHandler : MonoBehaviour
     }
 
     IEnumerator FirstSnack() {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         createSnack();
     }
 
