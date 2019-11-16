@@ -9,93 +9,26 @@ public class GameHandler : MonoBehaviour
     private Head snakehead;
 
     [SerializeField]
-    private SoundController soundcontroller;
+    private PastHead pastsnake;
 
-    // [SerializeField]
-    // private PastHead pastsnake;
+    [SerializeField]
+    private Snack snackprefab;    
 
-    private Vector3 snpos;
-    private Quaternion snrot;
-    private float spawntime;
-    private bool sent = false;
-    private bool spawnsaved = false;
-
-    private float[] timestamps;
-    private int[] directions;
-    private int nextTimestamp = 0;
-    private int timestamplimit = 95;
-    private int lengthIncrease = 100;
-
-    internal int Getdirection(float t)
-    {
-        int i = 0;
-        while (timestamps[i] < t) i++;
-        return directions[i];
-    }
+    private List<State> states;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        directions = new int[100];
-        timestamps = new float[100];
+        states = new List<State>();
 
-        snakehead = Instantiate(snakehead, transform.position, transform.rotation);
-        snakehead.SetGameHandler(this);
-
-	soundcontroller = Instantiate(soundcontroller, transform.position, transform.rotation);
-	soundcontroller.SetGameHandler(this);
+        snakehead = Instantiate(snakehead, transform.position, Quaternion.identity);
+        //snakehead.Initialize(this, states);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // if (Time.time > 10 && !spawnsaved)
-        // {
-        //     spawnsaved = true;
-        //     snpos = snakehead.transform.position;
-        //     snrot = snakehead.transform.rotation;
-        //     spawntime = Time.time;
-        // }
 
-        // if (Time.time > 15 && !sent)
-        // {
-        //     sent = true;
-        //     pastsnake = Instantiate(pastsnake, snpos, snrot);
-        //     pastsnake.Initialize(this, spawntime);
-        // }
-        
-    }
-
-    public void CreateTimestamp(int direction)
-    {
-        timestamps[nextTimestamp] = Time.time;
-        directions[nextTimestamp] = direction;
-
-        Debug.Log("Timestamp created at " + timestamps[nextTimestamp] + " with direction of " + directions[nextTimestamp] + ", Index = " + nextTimestamp + ", Listlength = " + directions.Length);
-
-        nextTimestamp++;
-        if (nextTimestamp > timestamplimit)
-        {
-            timestamplimit = timestamplimit + lengthIncrease;
-            ExpandLists();
-        }
-    }
-
-    private void ExpandLists()
-    {
-        float[] temptimes = new float[timestamps.Length + lengthIncrease];
-        for (int i = 0; i < timestamps.Length; i++)
-        {
-            timestamps[i] = temptimes[i];
-        }
-        timestamps = temptimes;
-
-        int[] tempdirs = new int[directions.Length + lengthIncrease];
-        for (int i = 0; i < directions.Length; i++)
-        {
-            directions[i] = tempdirs[i];
-        }
-        directions = tempdirs;
     }
 }

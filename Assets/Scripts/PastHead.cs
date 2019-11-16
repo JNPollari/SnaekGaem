@@ -5,97 +5,41 @@ using UnityEngine;
 
 public class PastHead : MonoBehaviour
 {
-    private float birthTime;
-    private float actStartTime;
-    private float actiontime;
-
     [SerializeField]
     private Tail tailprefab;
-    private GameHandler gamehandler;
 
-    private float dir = 0;
-    private int turnrate = 1;
-
-    private IEnumerator tailroutine;
-    private float tailDelayTime = 0.15f;
-
+    private float dir = 00f;
     private Tail tail;
-    private int headturn = 0;
-    private int tailturn = 0;
+    private List<State> states;
+    private int offset;
+    private State currentState;
 
-    [SerializeField]
-    private float speed = 2;
-
-
-    /// <summary>
-    /// Set all initial variables upon creation
-    /// </summary>
-    /// <param name="gh">reference to the gamehandler</param>
-    /// <param name="time">time, which to spawn</param>
-    internal void Initialize(GameHandler gh, float time)
+    // Initialize should be calles as the tailpiece is first created
+    public void Initialize(List<State> _states, int _offset)
     {
-        gamehandler = gh;
-        birthTime = time;
-        actStartTime = Time.time;
-        turnrate = gh.Getdirection(birthTime);
+        states = _states;
+        offset = _offset;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
+        currentState = states[offset];
+        transform.position = currentState.GetPosition();
+        transform.rotation = currentState.GetRotation();
     }
 
 
-    void Update()
+    internal void Spawntail()
     {
-        actiontime = birthTime - Time.time + actStartTime;
-        if (actiontime < 0) Destroy(gameObject);
-        turnrate = gamehandler.Getdirection(actiontime);
-        //Debug.Log(actiontime + " = actiontime, " + dir + " = dir" );
-
-        dir -= turnrate;
-
-        if (turnrate != headturn)
+        if (tail == null)
         {
-            headturn = turnrate;
-            tailroutine = Taildelay(turnrate);
-            StartCoroutine(tailroutine);
+            tail = Instantiate(tailprefab, transform.position, transform.rotation);
+            tail.Initialize(states, offset + 5);
         }
-
-        // if (tail != null)
-        // {
-        //     tail.Turn(tailturn);
-        // }
-
-        transform.eulerAngles = new Vector3(0, 0, 2 * dir);
-        transform.Translate(0.1f, 0.1f, 0);
-
-
-
+        else
+        {
+            tail.Spawntail();
+        }
     }
-
-    IEnumerator Taildelay(int axis)
-    {
-        yield return new WaitForSeconds(tailDelayTime);
-        tailturn = axis;
-
-    }
-
-    // private void Spawntail()
-    // {
-    //     if (tail == null)
-    //     {
-    //         tail = Instantiate(tailprefab, transform.position, transform.rotation);
-    //         tail.Initialize(dir, speed, tailDelayTime);
-    //     }
-    //     else
-    //     {
-    //         tail.Spawntail();
-    //     }
-    // }
-
-
-
-
 }
