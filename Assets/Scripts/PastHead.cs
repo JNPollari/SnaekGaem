@@ -63,10 +63,10 @@ public class PastHead : MonoBehaviour
             StartCoroutine(tailroutine);
         }
 
-        if (tail != null)
-        {
-            tail.Turn(tailturn);
-        }
+        // if (tail != null)
+        // {
+        //     tail.Turn(tailturn);
+        // }
 
         transform.eulerAngles = new Vector3(0, 0, 2 * dir);
         transform.Translate(0.1f, 0.1f, 0);
@@ -82,18 +82,18 @@ public class PastHead : MonoBehaviour
 
     }
 
-    private void Spawntail()
-    {
-        if (tail == null)
-        {
-            tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(dir, speed, tailDelayTime);
-        }
-        else
-        {
-            tail.Spawntail();
-        }
-    }
+    // private void Spawntail()
+    // {
+    //     if (tail == null)
+    //     {
+    //         tail = Instantiate(tailprefab, transform.position, transform.rotation);
+    //         tail.Initialize(dir, speed, tailDelayTime);
+    //     }
+    //     else
+    //     {
+    //         tail.Spawntail();
+    //     }
+    // }
 
 
 

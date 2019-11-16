@@ -8,8 +8,8 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private Head snakehead;
 
-    [SerializeField]
-    private PastHead pastsnake;
+    // [SerializeField]
+    // private PastHead pastsnake;
 
     private Vector3 snpos;
     private Quaternion snrot;
@@ -44,20 +44,20 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > 10 && !spawnsaved)
-        {
-            spawnsaved = true;
-            snpos = snakehead.GetPosition();
-            snrot = snakehead.GetRotation();
-            spawntime = Time.time;
-        }
+        // if (Time.time > 10 && !spawnsaved)
+        // {
+        //     spawnsaved = true;
+        //     snpos = snakehead.transform.position;
+        //     snrot = snakehead.transform.rotation;
+        //     spawntime = Time.time;
+        // }
 
-        if (Time.time > 15 && !sent)
-        {
-            sent = true;
-            pastsnake = Instantiate(pastsnake, snpos, snrot);
-            pastsnake.Initialize(this, spawntime);
-        }
+        // if (Time.time > 15 && !sent)
+        // {
+        //     sent = true;
+        //     pastsnake = Instantiate(pastsnake, snpos, snrot);
+        //     pastsnake.Initialize(this, spawntime);
+        // }
         
     }
 
