@@ -16,8 +16,8 @@ public class Tail : MonoBehaviour
 
     private IEnumerator tailroutine;
     private Tail tail;
-    private float thisturn = 0;
-    private float tailturn = 0;
+    private int thisturn = 0;
+    private int tailturn = 0;
 
     // Initialize should be calles as the tailpiece is first created
     public void Initialize(float direction, float movespeed, float delay)
@@ -63,11 +63,11 @@ public class Tail : MonoBehaviour
     /// Turns tail similary as head is turned via buttons
     /// </summary>
     /// <param name="right">wether tail should turn right. False turns left</param>    
-    internal void Turn(float direction)
+    internal void Turn(int direction)
     {
         if (active) dir -= direction;
 
-        if (direction != thisturn)
+        if (direction != thisturn) // set delaycoroutine for tailmovement
         {
             thisturn = direction;
             tailroutine = Taildelay(direction);
@@ -76,7 +76,7 @@ public class Tail : MonoBehaviour
 
     }
 
-    IEnumerator Taildelay(float axis)
+    IEnumerator Taildelay(int axis)
     {
         yield return new WaitForSeconds(tailDelayTime);
         tailturn = axis;

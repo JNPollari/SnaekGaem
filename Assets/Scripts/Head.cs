@@ -9,18 +9,17 @@ public class Head : MonoBehaviour
 
     private float dir = 0f;
     private Vector3 pytdir3;
-    private float turnrate = 1;
+    private int turnrate = 1;
 
     private IEnumerator tailroutine;
     private float tailDelayTime = 0.15f;
 
     private Tail tail;
-    private float headturn = 0;
-    private float tailturn = 0;
+    private int headturn = 0;
+    private int tailturn = 0;
         
     [SerializeField]
     private float speed = 30;
-    private float turnRateModifier = 0.015f;
 
     // Start is called before the first frame update
     void Start()
@@ -58,13 +57,11 @@ public class Head : MonoBehaviour
         pytdir3.x = dir;
         pytdir3.y = dir;
         if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed * speed / dir);
-
-        Debug.Log(turnrate);
-
-
+        
+        
     }
 
-    IEnumerator Taildelay(float axis)
+    IEnumerator Taildelay(int axis)
     {
         yield return new WaitForSeconds(tailDelayTime);
         tailturn = axis;
