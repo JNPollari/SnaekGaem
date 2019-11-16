@@ -8,6 +8,9 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private Head snakehead;
 
+    [SerializeField]
+    private SoundController soundcontroller;
+
     // [SerializeField]
     // private PastHead pastsnake;
 
@@ -39,6 +42,9 @@ public class GameHandler : MonoBehaviour
 
         snakehead = Instantiate(snakehead, transform.position, transform.rotation);
         snakehead.SetGameHandler(this);
+
+	soundcontroller = Instantiate(soundcontroller, transform.position, transform.rotation);
+	soundcontroller.SetGameHandler(this);
     }
 
     // Update is called once per frame
