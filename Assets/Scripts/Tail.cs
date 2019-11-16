@@ -8,87 +8,35 @@ public class Tail : MonoBehaviour
     private Tail tailprefab;
 
     private float dir = 00f;
-    private Vector3 pytdir3;
-    private float speed;
-    private bool active = false;
-    private IEnumerator activationroutine;
-    private float tailDelayTime = 0.5f;
-
-    private IEnumerator tailroutine;
     private Tail tail;
-    private int thisturn = 0;
-    private int tailturn = 0;
+    private List<State> states;
+    private int offset;
+    private State currentState;
 
     // Initialize should be calles as the tailpiece is first created
-    public void Initialize(float direction, float movespeed, float delay)
+    public void Initialize(List<State> _states, int _offset)
     {
-
-        dir = direction;
-        speed = movespeed;
-        tailDelayTime = delay;
-        activationroutine = Startdelay(delay);
-        StartCoroutine(activationroutine);
-
-
-    }
-
-    IEnumerator Startdelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        active = true;
-
+        states = _states;
+        offset = _offset;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        if (active)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 2 * dir);
-            transform.Translate(0.1f, 0.1f, 0.1f);
-
-            if (tail != null)
-            {
-                tail.Turn(tailturn);
-            }
-        }
-        
-    }
-
-    /// <summary>
-    /// Turns tail similary as head is turned via buttons
-    /// </summary>
-    /// <param name="right">wether tail should turn right. False turns left</param>    
-    internal void Turn(int direction)
-    {
-        if (active) dir -= direction;
-
-        if (direction != thisturn) // set delaycoroutine for tailmovement
-        {
-            thisturn = direction;
-            tailroutine = Taildelay(direction);
-            StartCoroutine(tailroutine);
-        }
-
-    }
-
-    IEnumerator Taildelay(int axis)
-    {
-        yield return new WaitForSeconds(tailDelayTime);
-        tailturn = axis;
-
+        currentState = states[offset];
+        transform.position = currentState.GetPosition();
+        transform.rotation = currentState.GetRotation();
     }
 
 
     internal void Spawntail()
     {
-        if (tail == null && active)
+        if (tail == null)
         {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(dir, speed, tailDelayTime);
+            tail.Initialize(states, offset + 5);
         }
-        else if (active)
+        else
         {
             tail.Spawntail();
         }

@@ -16,7 +16,7 @@ public class Head : MonoBehaviour
     private int turnrate = 1;
 
     private IEnumerator tailroutine;
-    private float tailDelayTime = 0.15f;
+    private float tailDelayTime = 0.05f;
 
     private Tail tail;
     private int headturn = 0;
@@ -27,6 +27,8 @@ public class Head : MonoBehaviour
 
     private int score = 0;
 
+    private List<State> states;
+
 
     internal void SetGameHandler(GameHandler gh)
     {
@@ -36,7 +38,12 @@ public class Head : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        states = new List<State>();
+    }
 
+    void FixedUpdate() { 
+        states.Insert(0, new State(transform.position, transform.rotation));
+        Debug.Log(states);
     }
 
     
@@ -51,20 +58,6 @@ public class Head : MonoBehaviour
         }
 
         dir -= turnrate;
-        
-
-        if (turnrate != headturn)
-        {
-            if (gamehandler != null) gamehandler.CreateTimestamp(turnrate);
-            headturn = turnrate;
-            tailroutine = Taildelay(turnrate);
-            StartCoroutine(tailroutine);
-        }
-
-        if (tail != null)
-        {
-            tail.Turn(tailturn);
-        }
         
         transform.eulerAngles = new Vector3(0, 0, 2 * dir);
         transform.Translate(0.1f, 0.1f, 0);
@@ -92,29 +85,12 @@ public class Head : MonoBehaviour
         }
     }
 
-    internal Quaternion GetRotation()
-    {
-        return transform.rotation;
-    }
-
-    internal Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-
-    IEnumerator Taildelay(int axis)
-    {
-        yield return new WaitForSeconds(tailDelayTime);
-        tailturn = axis;
-
-    }
-
     private void Spawntail()
     {
         if (tail == null)
         {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(dir, speed, tailDelayTime);
+            tail.Initialize(states, 5);
         } else
         {
             tail.Spawntail();
