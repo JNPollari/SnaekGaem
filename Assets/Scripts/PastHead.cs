@@ -3,8 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Head : MonoBehaviour
+public class PastHead : MonoBehaviour
 {
+    private float birthTime;
+    private float actStartTime;
+    private float actiontime;
+
     [SerializeField]
     private Tail tailprefab;
     private GameHandler gamehandler;
@@ -19,13 +23,22 @@ public class Head : MonoBehaviour
     private Tail tail;
     private int headturn = 0;
     private int tailturn = 0;
-        
-    [SerializeField]
-    private float speed = 30;
 
-    internal void SetGameHandler(GameHandler gh)
+    [SerializeField]
+    private float speed = 0.03f;
+
+
+    /// <summary>
+    /// Set all initial variables upon creation
+    /// </summary>
+    /// <param name="gh">reference to the gamehandler</param>
+    /// <param name="time">time, which to spawn</param>
+    internal void Initialize(GameHandler gh, float time)
     {
         gamehandler = gh;
+        birthTime = time;
+        actStartTime = Time.time;
+        turnrate = gh.Getdirection(birthTime);
     }
 
     // Start is called before the first frame update
@@ -34,24 +47,17 @@ public class Head : MonoBehaviour
         pytdir3 = new Vector3(dir, dir, 0);
     }
 
-    
+
     void Update()
     {
-        if (Input.GetAxis("Horizontal") < 0) turnrate = -1;
-        if (Input.GetAxis("Horizontal") > 0) turnrate = 1;
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            Spawntail();
-        }
-
-        Debug.Log(turnrate + " = turnrate, " + dir + " = dir");
+        actiontime = actStartTime - Time.time;
+        turnrate = gamehandler.Getdirection(actiontime);
+        Debug.Log(turnrate + " = turnrate, " + dir + " = dir" );
 
         dir -= turnrate;
 
         if (turnrate != headturn)
         {
-            if (gamehandler != null) gamehandler.CreateTimestamp(turnrate);
             headturn = turnrate;
             tailroutine = Taildelay(turnrate);
             StartCoroutine(tailroutine);
@@ -61,14 +67,14 @@ public class Head : MonoBehaviour
         {
             tail.Turn(tailturn);
         }
-        
+
         transform.eulerAngles = new Vector3(0, 0, 2 * dir);
 
         pytdir3.x = dir;
         pytdir3.y = dir;
-        if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed * speed / dir);
-        
-        
+        if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed / dir);
+
+
     }
 
     internal Quaternion GetRotation()
@@ -94,7 +100,8 @@ public class Head : MonoBehaviour
         {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);
             tail.Initialize(dir, speed, tailDelayTime);
-        } else
+        }
+        else
         {
             tail.Spawntail();
         }

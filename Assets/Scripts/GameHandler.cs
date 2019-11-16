@@ -8,12 +8,28 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private Head snakehead;
 
+    [SerializeField]
+    private PastHead pastsnake;
+
+    private Vector3 snpos;
+    private Quaternion snrot;
+    private float spawntime;
+    private bool sent = false;
+    private bool spawnsaved = false;
+
 
     private float[] timestamps;
     private int[] directions;
     private int nextTimestamp = 0;
     private int timestamplimit = 95;
     private int lengthIncrease = 100;
+
+    internal int Getdirection(float t)
+    {
+        int i = 0;
+        while (timestamps[i] < t) i++;
+        return directions[i];
+    }
 
 
     // Start is called before the first frame update
@@ -29,6 +45,20 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.time > 5 && !spawnsaved)
+        {
+            spawnsaved = true;
+            snpos = snakehead.GetPosition();
+            snrot = snakehead.GetRotation();
+            spawntime = Time.time;
+        }
+
+        if (Time.time > 10 && !sent)
+        {
+            sent = true;
+            pastsnake = Instantiate(pastsnake, snpos, snrot);
+            pastsnake.Initialize(this, spawntime);
+        }
         
     }
 
