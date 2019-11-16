@@ -58,6 +58,11 @@ public class Head : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) turnDirection = -1;
         if (Input.GetAxis("Horizontal") > 0) turnDirection = 1;
 
+	if (Input.GetKeyDown("space"))
+	{
+	    turnDirection *= -1;
+	}
+
         dir -= turnDirection;
         
         transform.eulerAngles = new Vector3(0, 0, turnSpeed * dir);
