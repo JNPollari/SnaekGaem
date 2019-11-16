@@ -42,11 +42,12 @@ public class Head : MonoBehaviour
     void Start()
     {
         states = new List<State>();
-        tail = Instantiate(tailprefab, transform.position, transform.rotation);
-        tail.Initialize(states, 5);
-        for (int i=0; i < tails - 1; i++) {
-            tail.Spawntail();
-        }
+        // tail = Instantiate(tailprefab, transform.position, transform.rotation);
+        // tail.Initialize(states, 5);
+        // for (int i=0; i < tails - 1; i++) {
+        //     tail.Spawntail();
+        // }
+        
     }
 
     void FixedUpdate() { 
@@ -62,7 +63,7 @@ public class Head : MonoBehaviour
 
         if (Input.GetButtonDown("Jump"))
         {
-            tail.Spawntail();
+            growTail();
         }
 
         dir -= turnDirection;
@@ -73,23 +74,14 @@ public class Head : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Snack") {
-            score += 1;
-            Instantiate(collision.gameObject, new Vector3(
-                UnityEngine.Random.Range(-10, 10),
-                UnityEngine.Random.Range(-10, 10),
-                0),
-                new Quaternion(0, 0, 0, 0));
-            Destroy(collision.gameObject);
-            Debug.Log("Snack eaten.");
-
-            /*
-            Instantiate(snack, new Vector3(
-                UnityEngine.Random.Range(-10, 10),
-                UnityEngine.Random.Range(-10, 10),
-                0), new Quaternion(0, 0, 0, 0));
-            */
+    internal void growTail() {
+        if (tail == null) {
+            tail = Instantiate(tailprefab, transform.position, transform.rotation);
+            tail.Initialize(states, 5);
+        } else {
+            tail.Spawntail();
         }
     }
+
+
 }
