@@ -9,7 +9,7 @@ public class Tail : MonoBehaviour
 
     private float dir = 00f;
     private Vector3 pytdir3;
-    private float speed = 0.02f;
+    private float speed;
     private bool active = false;
     private IEnumerator activationroutine;
     private float tailDelayTime = 0.5f;
@@ -49,7 +49,7 @@ public class Tail : MonoBehaviour
 
             pytdir3.x = dir;
             pytdir3.y = dir;
-            transform.Translate(pytdir3 * Time.deltaTime * speed / dir);
+            if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed * speed / dir);
 
             if (tail != null)
             {
@@ -88,7 +88,7 @@ public class Tail : MonoBehaviour
     {
         if (tail == null && active)
         {
-            tail = Instantiate(tailprefab, transform.position, Quaternion.identity);
+            tail = Instantiate(tailprefab, transform.position, transform.rotation);
             tail.Initialize(dir, speed, tailDelayTime);
         }
         else if (active)

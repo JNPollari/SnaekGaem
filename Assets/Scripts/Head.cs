@@ -9,16 +9,18 @@ public class Head : MonoBehaviour
 
     private float dir = 0f;
     private Vector3 pytdir3;
+    private float turnrate = 1;
 
     private IEnumerator tailroutine;
-    private float tailDelayTime = 0.25f;
+    private float tailDelayTime = 0.15f;
 
     private Tail tail;
     private float headturn = 0;
     private float tailturn = 0;
         
     [SerializeField]
-    private float speed = 0.02f;
+    private float speed = 30;
+    private float turnRateModifier = 0.015f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +31,20 @@ public class Head : MonoBehaviour
     
     void Update()
     {
+        if (Input.GetAxis("Horizontal") < 0) turnrate = -1;
+        if (Input.GetAxis("Horizontal") > 0) turnrate = 1;
+
         if (Input.GetButtonDown("Jump"))
         {
             Spawntail();
         }
 
-        dir -= Input.GetAxis("Horizontal");
+        dir -= turnrate;
 
-        if (Input.GetAxis("Horizontal") != headturn)
+        if (turnrate != headturn)
         {
-            headturn = Input.GetAxis("Horizontal");
-            tailroutine = Taildelay(Input.GetAxis("Horizontal"));
+            headturn = turnrate;
+            tailroutine = Taildelay(turnrate);
             StartCoroutine(tailroutine);
         }
 
@@ -52,7 +57,9 @@ public class Head : MonoBehaviour
 
         pytdir3.x = dir;
         pytdir3.y = dir;
-        transform.Translate(pytdir3 * Time.deltaTime * speed / dir);
+        if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed * speed / dir);
+
+        Debug.Log(turnrate);
 
 
     }
@@ -68,7 +75,7 @@ public class Head : MonoBehaviour
     {
         if (tail == null)
         {
-            tail = Instantiate(tailprefab, transform.position, Quaternion.identity);
+            tail = Instantiate(tailprefab, transform.position, transform.rotation);
             tail.Initialize(dir, speed, tailDelayTime);
         } else
         {
