@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 669818679}
   m_Layer: 0
   m_Name: Snack
-  m_TagString: Untagged
+  m_TagString: Snack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -512,5 +512,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spritechld
       objectReference: {fileID: 0}
+    - target: {fileID: 6470904045392878327, guid: 68603c4bd450e2f4385c4bc678b54beb,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470904045392878327, guid: 68603c4bd450e2f4385c4bc678b54beb,
+        type: 3}
+      propertyPath: snack
+      value: 
+      objectReference: {fileID: 669818674}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68603c4bd450e2f4385c4bc678b54beb, type: 3}

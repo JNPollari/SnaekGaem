@@ -17,7 +17,6 @@ public class GameHandler : MonoBehaviour
     private bool sent = false;
     private bool spawnsaved = false;
 
-
     private float[] timestamps;
     private int[] directions;
     private int nextTimestamp = 0;

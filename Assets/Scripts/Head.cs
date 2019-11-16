@@ -9,6 +9,9 @@ public class Head : MonoBehaviour
     private Tail tailprefab;
     private GameHandler gamehandler;
 
+    [SerializeField]
+    private GameObject snack;
+
     private float dir = 0f;
     private Vector3 pytdir3;
     private int turnrate = 1;
@@ -22,6 +25,9 @@ public class Head : MonoBehaviour
         
     [SerializeField]
     private float speed = 30;
+
+    private int score = 0;
+
 
     internal void SetGameHandler(GameHandler gh)
     {
@@ -69,6 +75,26 @@ public class Head : MonoBehaviour
         if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed * speed / dir);
         
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Snack") {
+            score += 1;
+            Instantiate(collision.gameObject, new Vector3(
+                UnityEngine.Random.Range(-10, 10),
+                UnityEngine.Random.Range(-10, 10),
+                0),
+                new Quaternion(0, 0, 0, 0));
+            Destroy(collision.gameObject);
+            Debug.Log("Snack eaten.");
+
+            /*
+            Instantiate(snack, new Vector3(
+                UnityEngine.Random.Range(-10, 10),
+                UnityEngine.Random.Range(-10, 10),
+                0), new Quaternion(0, 0, 0, 0));
+            */
+        }
     }
 
     internal Quaternion GetRotation()
