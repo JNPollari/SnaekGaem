@@ -63,6 +63,6 @@ public class GameHandler : MonoBehaviour
 
     internal void createReverseSnake(State state, int stateCount, int tails) {
         ReverseHead _reverseSnake = Instantiate(reverseSnake, state.GetPosition(), state.GetRotation());
-        _reverseSnake.Initialize(states, state, stateCount, offset, tails);
+        _reverseSnake.Initialize(states, state, stateCount + 5 * snakehead.GetTails(), offset, tails);
     }
 }
