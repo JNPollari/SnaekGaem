@@ -44,7 +44,7 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > 5 && !spawnsaved)
+        if (Time.time > 10 && !spawnsaved)
         {
             spawnsaved = true;
             snpos = snakehead.GetPosition();
@@ -52,7 +52,7 @@ public class GameHandler : MonoBehaviour
             spawntime = Time.time;
         }
 
-        if (Time.time > 10 && !sent)
+        if (Time.time > 15 && !sent)
         {
             sent = true;
             pastsnake = Instantiate(pastsnake, snpos, snrot);

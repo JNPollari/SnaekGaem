@@ -46,10 +46,7 @@ public class Tail : MonoBehaviour
         if (active)
         {
             transform.eulerAngles = new Vector3(0, 0, 2 * dir);
-
-            pytdir3.x = dir;
-            pytdir3.y = dir;
-            if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed * speed / dir);
+            transform.Translate(0.1f, 0.1f, 0.1f);
 
             if (tail != null)
             {

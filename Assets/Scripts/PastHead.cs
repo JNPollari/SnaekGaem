@@ -13,8 +13,7 @@ public class PastHead : MonoBehaviour
     private Tail tailprefab;
     private GameHandler gamehandler;
 
-    private float dir = 0f;
-    private Vector3 pytdir3;
+    private float dir = 0;
     private int turnrate = 1;
 
     private IEnumerator tailroutine;
@@ -25,7 +24,7 @@ public class PastHead : MonoBehaviour
     private int tailturn = 0;
 
     [SerializeField]
-    private float speed = 0.03f;
+    private float speed = 2;
 
 
     /// <summary>
@@ -44,15 +43,16 @@ public class PastHead : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pytdir3 = new Vector3(dir, dir, 0);
+        transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
     }
 
 
     void Update()
     {
-        actiontime = actStartTime - Time.time;
+        actiontime = birthTime - Time.time + actStartTime;
+        if (actiontime < 0) Destroy(gameObject);
         turnrate = gamehandler.Getdirection(actiontime);
-        Debug.Log(turnrate + " = turnrate, " + dir + " = dir" );
+        //Debug.Log(actiontime + " = actiontime, " + dir + " = dir" );
 
         dir -= turnrate;
 
@@ -69,22 +69,10 @@ public class PastHead : MonoBehaviour
         }
 
         transform.eulerAngles = new Vector3(0, 0, 2 * dir);
-
-        pytdir3.x = dir;
-        pytdir3.y = dir;
-        if (dir != 0) transform.Translate(pytdir3 * Time.deltaTime * speed / dir);
+        transform.Translate(0.1f, 0.1f, 0);
 
 
-    }
 
-    internal Quaternion GetRotation()
-    {
-        return transform.rotation;
-    }
-
-    internal Vector3 GetPosition()
-    {
-        return transform.position;
     }
 
     IEnumerator Taildelay(int axis)

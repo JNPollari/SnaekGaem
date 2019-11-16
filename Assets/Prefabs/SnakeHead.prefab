@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6470904044168987958}
   - component: {fileID: 6470904044168987959}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Spriteholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6470904045392878330}
   - component: {fileID: 6470904045392878327}
+  - component: {fileID: -5556483708832195992}
   m_Layer: 0
   m_Name: SnakeHead
   m_TagString: Untagged
@@ -104,8 +105,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6470904045392878326}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.871, y: 1.137, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6470904044168987958}
@@ -127,3 +128,38 @@ MonoBehaviour:
   tailprefab: {fileID: 5600350278924142734, guid: 67a5b5948c487b942a061e226996dedc,
     type: 3}
   speed: 2
+--- !u!60 &-5556483708832195992
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6470904045392878326}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5154689, y: 0.34163755}
+      - {x: 0.41552478, y: 0.47924578}
+      - {x: 0.12562442, y: 0.54183966}
+      - {x: -0.21472198, y: 0.4226644}
+      - {x: -0.7145867, y: 0.07993662}
+      - {x: -0.7172392, y: -0.14019287}
+      - {x: -0.47693986, y: -0.47648156}
+      - {x: -0.08639687, y: -0.7123561}
+      - {x: 0.13701469, y: -0.6833925}
+      - {x: 0.52984464, y: 0.013429761}
