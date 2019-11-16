@@ -125,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6456e2ab642b2d147b00eb5bead61e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tailprefab: {fileID: 5600350278924142734, guid: 67a5b5948c487b942a061e226996dedc,
+  tailprefab: {fileID: 5600350278924142734, guid: 7e77724ebac4e12c8b684f3663ca76a0,
     type: 3}
-  speed: 2
+  snack: {fileID: 1675567848407459031, guid: 64fcc7de4cd0d574abd36154e27719b7, type: 3}
+  speed: 0.1
+  turnSpeed: 3
 --- !u!60 &-5556483708832195992
 PolygonCollider2D:
   m_ObjectHideFlags: 0

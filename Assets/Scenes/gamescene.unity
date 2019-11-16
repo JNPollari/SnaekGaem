@@ -183,7 +183,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &81959571
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af2f2000bf11f54daef2fda551eeffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snakehead: {fileID: 6470904045392878327, guid: 68603c4bd450e2f4385c4bc678b54beb,
+  snakehead: {fileID: 6470904045392878327, guid: 9a9e33fd0f8b8d3e981d7cf9c6cb914a,
     type: 3}
   soundcontroller: {fileID: -2846465687080166280, guid: 314bf492e3e2b4488bd60bc46d0efec4,
     type: 3}

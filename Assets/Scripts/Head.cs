@@ -13,7 +13,7 @@ public class Head : MonoBehaviour
     private GameObject snack;
     
     private float dir = 0;
-    private int turnrate = 1;
+    private int turnDirection = 1;
 
     private IEnumerator tailroutine;
     private float tailDelayTime = 0.05f;
@@ -23,9 +23,12 @@ public class Head : MonoBehaviour
     private int tailturn = 0;
         
     [SerializeField]
-    private float speed = 2;
+    private float speed;
+    [SerializeField]
+    private float turnSpeed;
 
     private int score = 0;
+    private int tails = 4;
 
     private List<State> states;
 
@@ -39,6 +42,11 @@ public class Head : MonoBehaviour
     void Start()
     {
         states = new List<State>();
+        tail = Instantiate(tailprefab, transform.position, transform.rotation);
+        tail.Initialize(states, 5);
+        for (int i=0; i < tails - 1; i++) {
+            tail.Spawntail();
+        }
     }
 
     void FixedUpdate() { 
@@ -49,18 +57,18 @@ public class Head : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetAxis("Horizontal") < 0) turnrate = -1;
-        if (Input.GetAxis("Horizontal") > 0) turnrate = 1;
+        if (Input.GetAxis("Horizontal") < 0) turnDirection = -1;
+        if (Input.GetAxis("Horizontal") > 0) turnDirection = 1;
 
         if (Input.GetButtonDown("Jump"))
         {
-            Spawntail();
+            tail.Spawntail();
         }
 
-        dir -= turnrate;
+        dir -= turnDirection;
         
-        transform.eulerAngles = new Vector3(0, 0, 2 * dir);
-        transform.Translate(0.1f, 0.1f, 0);
+        transform.eulerAngles = new Vector3(0, 0, turnSpeed * dir);
+        transform.Translate(speed, speed, 0);
 
 
     }
@@ -84,20 +92,4 @@ public class Head : MonoBehaviour
             */
         }
     }
-
-    private void Spawntail()
-    {
-        if (tail == null)
-        {
-            tail = Instantiate(tailprefab, transform.position, transform.rotation);
-            tail.Initialize(states, 5);
-        } else
-        {
-            tail.Spawntail();
-        }
-    }
-
-
-
-
 }
