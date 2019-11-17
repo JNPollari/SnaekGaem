@@ -20,8 +20,8 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private int offset = 5; // Offset between tail pieces.
 
-    private float sceneWidth = 10;
-    private float sceneHeight = 10;
+    private float sceneWidth = 38;
+    private float sceneHeight = 16;
 
     // Start is called before the first frame update
     void Start()
@@ -48,13 +48,11 @@ public class GameHandler : MonoBehaviour
     }
 
     internal void createSnack() {
-        float halfWidth = sceneWidth / 2;
-        float halfHeight = sceneHeight / 2;
         Snack _snack = Instantiate(
             snackprefab, 
             new Vector3(
-                UnityEngine.Random.Range(-halfWidth, halfWidth),
-                UnityEngine.Random.Range(-halfHeight, halfHeight),
+                UnityEngine.Random.Range(-sceneWidth, sceneWidth),
+                UnityEngine.Random.Range(-sceneHeight, sceneHeight),
                 0),
                 new Quaternion(0, 0, 0, 0));
         _snack.Initialize(this, states[0], snakehead.GetTails());

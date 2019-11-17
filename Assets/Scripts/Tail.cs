@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ public class Tail : MonoBehaviour
     private List<State> states;
     private int offset;
     private State currentState;
+
+    internal void SetSprite(TailSprite tailSprite)
+    {
+        tailSprite.FadeIn(offset);
+    }
 
     // Initialize should be calles as the tailpiece is first created
     public void Initialize(List<State> _states, int _offset)
