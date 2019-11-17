@@ -41,7 +41,6 @@ public class ReverseHead : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         currentState = states[stateCount];
         stateCount += 2;
         lifeTime--;

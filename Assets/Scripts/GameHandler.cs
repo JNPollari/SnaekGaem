@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class GameHandler : MonoBehaviour
     private Snack snackprefab;    
 
     private List<State> states;
+
+    private Text textField;
+
+    internal void SetTextField(Text text)
+    {
+        textField = text;
+    }
 
     private int score = 0;
     [SerializeField]
@@ -45,6 +53,7 @@ public class GameHandler : MonoBehaviour
 
     internal void incrementScore(int inc) {
         score += inc;
+        textField.text = "Score " + score.ToString();
     }
 
     internal void createSnack() {
