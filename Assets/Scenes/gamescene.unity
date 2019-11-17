@@ -1328,15 +1328,10 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.50980395
       objectReference: {fileID: 0}
-    - target: {fileID: 9217941109796199129, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9217941109796199129, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5496568443703273883, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
         type: 3}
