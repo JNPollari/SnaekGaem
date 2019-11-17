@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameHandler : MonoBehaviour
@@ -28,12 +29,13 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private int offset = 5; // Offset between tail pieces.
 
-    private float sceneWidth = 38;
+    private float sceneWidth = 30;
     private float sceneHeight = 16;
 
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         states = new List<State>();
         snakehead = Instantiate(snakehead, transform.position, Quaternion.identity);
         snakehead.Initialize(this, states, offset);
@@ -48,7 +50,7 @@ public class GameHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetButtonDown("Cancel")) SceneManager.LoadScene("menuscene");
     }
 
     internal void incrementScore(int inc) {

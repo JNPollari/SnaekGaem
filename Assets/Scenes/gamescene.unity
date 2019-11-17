@@ -144,8 +144,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12944709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.3, y: 3.4, z: 263.7631}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: -13.1, y: 3.4, z: 263.7631}
+  m_LocalScale: {x: 1.68, y: 2, z: 1}
   m_Children:
   - {fileID: 1138487431}
   - {fileID: 476558756}
@@ -1056,7 +1056,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 19.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1303,36 +1303,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 12944710}
     m_Modifications:
-    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.50980395
-      objectReference: {fileID: 0}
-    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5496568443703273883, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
         type: 3}
       propertyPath: m_Name
@@ -1402,6 +1372,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.50980395
+      objectReference: {fileID: 0}
+    - target: {fileID: 6005596969386027967, guid: 1a4ecba06eda8e08da85f9fb04d25fd7,
+        type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a4ecba06eda8e08da85f9fb04d25fd7, type: 3}

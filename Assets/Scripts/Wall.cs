@@ -18,6 +18,9 @@ public class Wall : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-	SceneManager.LoadScene("menuscene");
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene("menuscene");
+        }
     }
 }

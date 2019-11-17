@@ -26,4 +26,9 @@ public class SceneChanger : MonoBehaviour
     {
 	SceneManager.LoadScene("menuscene");
     }
+
+    public void QuitGaem()
+    {
+        Application.Quit();
+    }
 }
