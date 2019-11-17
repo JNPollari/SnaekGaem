@@ -69,6 +69,15 @@ public class Head : MonoBehaviour
         transform.Translate(speed, speed, 0);
     }
 
+    internal Vector3 GetTailpos()
+    {
+        if (tail == null)
+        {
+            return gameObject.transform.position;
+        }
+        else return tail.GetTailpos();
+    }
+
     internal void growTail() {
         if (tail == null) {
             tail = Instantiate(tailprefab, transform.position, transform.rotation);

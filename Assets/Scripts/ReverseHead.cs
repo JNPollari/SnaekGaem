@@ -34,7 +34,7 @@ public class ReverseHead : MonoBehaviour
         states = _states;
         stateCount = _stateCount;
         offset = _offset;
-        lifeTime = _stateCount;
+        lifeTime = _stateCount + Mathf.RoundToInt(Time.time * 2);
         tails = _tails;
     }
 

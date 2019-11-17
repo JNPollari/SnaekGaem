@@ -48,13 +48,21 @@ public class GameHandler : MonoBehaviour
     }
 
     internal void createSnack() {
-        Snack _snack = Instantiate(
-            snackprefab, 
-            new Vector3(
-                UnityEngine.Random.Range(-sceneWidth, sceneWidth),
+        Vector3 tailpos = snakehead.GetTailpos();
+        float distance = 0;
+        Vector3 locat = new Vector3(0, 0, 0);
+
+        while (distance < 20)
+        {
+            locat = new Vector3(UnityEngine.Random.Range(-sceneWidth, sceneWidth),
                 UnityEngine.Random.Range(-sceneHeight, sceneHeight),
-                0),
-                new Quaternion(0, 0, 0, 0));
+                0);
+
+            distance = Mathf.Abs(tailpos.x - locat.x) + Mathf.Abs(tailpos.y - locat.y);
+        }
+
+        Snack _snack = Instantiate(
+            snackprefab, locat, new Quaternion(0, 0, 0, 0));
         _snack.Initialize(this, states[0], snakehead.GetTails());
 
     }

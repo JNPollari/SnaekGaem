@@ -60,7 +60,6 @@ public class ReverseTail : MonoBehaviour
 
     internal void Fade()
     {
-        Debug.Log("Fade Called!!!");
         if (tail != null) tail.Fade();
         spriteHandler.FadeOut();
         Destroy(gameObject, 2);
@@ -68,10 +67,8 @@ public class ReverseTail : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("joku osu häntään!!!");
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("pelaaja osu häntään!!!");
             SceneManager.LoadScene("menuscene");
         }
     }

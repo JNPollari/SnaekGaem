@@ -34,6 +34,15 @@ public class Tail : MonoBehaviour
         transform.rotation = currentState.GetRotation();
     }
 
+    internal Vector3 GetTailpos()
+    {
+        if (tail == null)
+        {
+            return gameObject.transform.position;
+        }
+        else return tail.GetTailpos();
+    }
+
 
     internal void Spawntail()
     {
