@@ -58,6 +58,11 @@ public class ReverseHead : MonoBehaviour
         if (states.Count <= stateCount) DemolishAll();
     }
 
+    internal void GainLife(int _stateCount)
+    {
+        lifeTime += _stateCount * 2;
+    }
+
     internal void Spawntail()
     {
         if (tail == null)

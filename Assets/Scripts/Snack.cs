@@ -42,14 +42,14 @@ public class Snack : MonoBehaviour
             gameHandler.incrementScore(1);
             gameHandler.createSnack();
             audioSource.PlayOneShot(audioClip);
+            collision.gameObject.GetComponent<Head>().growTail();
             Destroy(gameObject.GetComponent<SpriteRenderer>());
             Destroy(gameObject.GetComponent<CircleCollider2D>());
             Destroy(gameObject, 5);
-            collision.gameObject.GetComponent<Head>().growTail();
         } else if (collision.gameObject.tag == "Shadow")
         {
-            gameHandler.createReverseSnake(state, stateCount, tails);
             gameHandler.createSnack();
+            collision.gameObject.GetComponent<ReverseHead>().GainLife(stateCount);
             Destroy(gameObject.GetComponent<SpriteRenderer>());
             Destroy(gameObject.GetComponent<CircleCollider2D>());
             Destroy(gameObject, 5);
