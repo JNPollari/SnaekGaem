@@ -23,7 +23,7 @@ public class ReverseHead : MonoBehaviour
     private State currentState;
     private int stateCount;
     private int lifeTime;
-    private int tails;
+    private int tailsToSpawn;
 
     // Initialize should be calles as the tailpiece is first created
     public void Initialize(List<State> _states, State _initialState, int _stateCount, float _startTime, int _offset, int _tails)
@@ -33,7 +33,7 @@ public class ReverseHead : MonoBehaviour
         stateCount = _stateCount;
         offset = _offset;
         lifeTime = _stateCount + Mathf.RoundToInt((Time.time - _startTime) * 2);
-        tails = _tails;
+        tailsToSpawn = _tails;
     }
 
     // Update is called once per frame
@@ -46,14 +46,14 @@ public class ReverseHead : MonoBehaviour
         transform.position = currentState.GetPosition();
         transform.rotation = currentState.GetRotation();
         if (lifeTime == 0) {
-            if (tail != null) tail.Fade();
+            if (tail != null) tail.FadeAll();
             spriteHandler.FadeOut();
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 2);
         }
-        if (tails > 0) {
+        if (tailsToSpawn > 0) {
             Spawntail();
         }
-        tails--;
+        tailsToSpawn--;
 
         if (states.Count <= stateCount) DemolishAll();
     }

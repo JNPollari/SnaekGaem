@@ -34,12 +34,12 @@ public class ReverseTail : MonoBehaviour
     {
         currentState = states[offset];
         offset += 2;
-        
+        /*
         lifeTime--;
         if (lifeTime == 0) {
             spriteHandler.FadeOut();
             Destroy(gameObject, 1);
-        }
+        }*/
         transform.position = currentState.GetPosition();
         transform.rotation = currentState.GetRotation();
     }
@@ -64,9 +64,9 @@ public class ReverseTail : MonoBehaviour
         Destroy(gameObject);
     }
 
-    internal void Fade()
+    internal void FadeAll()
     {
-        if (tail != null) tail.Fade();
+        if (tail != null) tail.FadeAll();
         spriteHandler.FadeOut();
         Destroy(gameObject, 2);
     }

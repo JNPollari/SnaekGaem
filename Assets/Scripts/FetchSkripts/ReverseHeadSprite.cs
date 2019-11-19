@@ -42,10 +42,10 @@ public class ReverseHeadSprite : MonoBehaviour
     {
         Color tmp = spriteRenderer.color;
 
-        for (int i = 50; i > 0; i--)
+        for (int i = 100; i > 0; i--)
         {
             yield return new WaitForSeconds(0.02f);
-            tmp.a = 0.02f * i;
+            tmp.a = 0.01f * i;
             spriteRenderer.color = tmp;
         }
         Destroy(gameObject);
