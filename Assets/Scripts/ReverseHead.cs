@@ -28,13 +28,13 @@ public class ReverseHead : MonoBehaviour
     private int tails;
 
     // Initialize should be calles as the tailpiece is first created
-    public void Initialize(List<State> _states, State _initialState, int _stateCount, int _offset, int _tails)
+    public void Initialize(List<State> _states, State _initialState, int _stateCount, float _startTime, int _offset, int _tails)
     {
         currentState = _initialState;
         states = _states;
         stateCount = _stateCount;
         offset = _offset;
-        lifeTime = _stateCount + Mathf.RoundToInt(Time.time * 2);
+        lifeTime = _stateCount + Mathf.RoundToInt((Time.time - _startTime) * 2);
         tails = _tails;
     }
 

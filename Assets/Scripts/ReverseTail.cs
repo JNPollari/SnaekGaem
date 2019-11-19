@@ -65,7 +65,7 @@ public class ReverseTail : MonoBehaviour
         Destroy(gameObject, 2);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnColliderEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {

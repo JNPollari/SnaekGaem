@@ -18,6 +18,8 @@ public class GameHandler : MonoBehaviour
 
     private List<State> states;
 
+    private float startTime = 0;
+
     private Text textField;
 
     internal void SetTextField(Text text)
@@ -35,6 +37,7 @@ public class GameHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         Application.targetFrameRate = 60;
         states = new List<State>();
         snakehead = Instantiate(snakehead, transform.position, Quaternion.identity);
@@ -80,6 +83,6 @@ public class GameHandler : MonoBehaviour
 
     internal void createReverseSnake(State state, int stateCount, int tails) {
         ReverseHead _reverseSnake = Instantiate(reverseSnake, state.GetPosition(), state.GetRotation());
-        _reverseSnake.Initialize(states, state, stateCount + 5 * snakehead.GetTails(), offset, tails);
+        _reverseSnake.Initialize(states, state, stateCount + 5 * snakehead.GetTails(), startTime, offset, tails);
     }
 }
