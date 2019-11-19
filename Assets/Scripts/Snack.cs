@@ -8,7 +8,7 @@ public class Snack : MonoBehaviour
     private GameHandler gameHandler;
     private AudioSource audioSource;
     [SerializeField]
-    private AudioClip audioClip;
+    private AudioClip audioClip = null;
     private State state;
     private int stateCount = 0;
     private int tails;
@@ -38,7 +38,6 @@ public class Snack : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
-            Debug.Log("Snack eaten.");
             gameHandler.createReverseSnake(state, stateCount, tails);
             gameHandler.incrementScore(1);
             gameHandler.createSnack();
@@ -47,6 +46,13 @@ public class Snack : MonoBehaviour
             Destroy(gameObject.GetComponent<CircleCollider2D>());
             Destroy(gameObject, 5);
             collision.gameObject.GetComponent<Head>().growTail();
+        } else if (collision.gameObject.tag == "Shadow")
+        {
+            gameHandler.createReverseSnake(state, stateCount, tails);
+            gameHandler.createSnack();
+            Destroy(gameObject.GetComponent<SpriteRenderer>());
+            Destroy(gameObject.GetComponent<CircleCollider2D>());
+            Destroy(gameObject, 5);
         }
     }
 }

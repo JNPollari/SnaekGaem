@@ -8,13 +8,13 @@ using UnityEngine.UI;
 public class GameHandler : MonoBehaviour
 {
     [SerializeField]
-    private Head snakehead;
+    private Head snakehead = null;
 
     [SerializeField]
-    private ReverseHead reverseSnake;
+    private ReverseHead reverseSnake = null;
 
     [SerializeField]
-    private Snack snackprefab;    
+    private Snack snackprefab = null;    
 
     private List<State> states;
 
@@ -55,7 +55,7 @@ public class GameHandler : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel")) SceneManager.LoadScene("menuscene");
     }
-
+    
     internal void incrementScore(int inc) {
         score += inc;
         textField.text = "Score " + score.ToString();

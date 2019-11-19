@@ -7,10 +7,9 @@ using UnityEngine.SceneManagement;
 public class ReverseTail : MonoBehaviour
 {
     [SerializeField]
-    private ReverseTail tailprefab;
+    private ReverseTail tailprefab = null;
     private ReverseTailSprite spriteHandler;
-
-    private float dir = 00f;
+    
     private ReverseTail tail;
     private List<State> states;
     private int offset;
@@ -33,13 +32,14 @@ public class ReverseTail : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        currentState = states[offset];
         offset += 2;
+        
         lifeTime--;
         if (lifeTime == 0) {
             spriteHandler.FadeOut();
             Destroy(gameObject, 1);
         }
-        currentState = states[offset];
         transform.position = currentState.GetPosition();
         transform.rotation = currentState.GetRotation();
     }
@@ -58,19 +58,17 @@ public class ReverseTail : MonoBehaviour
         }
     }
 
+    internal void DemolishAll()
+    {
+        if (tail != null) tail.DemolishAll();
+        Destroy(gameObject);
+    }
+
     internal void Fade()
     {
         if (tail != null) tail.Fade();
         spriteHandler.FadeOut();
         Destroy(gameObject, 2);
-    }
-
-    void OnColliderEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            SceneManager.LoadScene("menuscene");
-        }
     }
 }
 

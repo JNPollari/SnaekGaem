@@ -2,15 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Head : MonoBehaviour
 {
     [SerializeField]
-    private Tail tailprefab;
+    private Tail tailprefab = null;
     private GameHandler gameHandler;
     
-    [SerializeField]
-    private GameObject snack;
     
     private float dir = 0;
     private int turnDirection = 1;
@@ -18,15 +17,13 @@ public class Head : MonoBehaviour
     private Tail tail;
         
     [SerializeField]
-    private float speed;
+    private float speed = 0.1f;
     [SerializeField]
-    private float turnSpeed;
-
-    private int score = 0;
+    private float turnSpeed = 3;
+    
     private int tails = 0;
     private int initialTails = 4;
     private int offset;
-    private int startStates = 0;
 
     private List<State> states;
 
@@ -97,4 +94,21 @@ public class Head : MonoBehaviour
     internal int GetTails() {
         return tails;
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Shadow")
+        {
+            SceneManager.LoadScene("menuscene");
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Shadow")
+        {
+            SceneManager.LoadScene("menuscene");
+        }
+    }
+    
 }

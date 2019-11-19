@@ -6,9 +6,8 @@ using UnityEngine;
 public class Tail : MonoBehaviour
 {
     [SerializeField]
-    private Tail tailprefab;
-
-    private float dir = 00f;
+    private Tail tailprefab = null;
+    
     private Tail tail;
     private List<State> states;
     private int offset;

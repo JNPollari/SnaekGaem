@@ -19,7 +19,6 @@ public class TailSprite : MonoBehaviour
     internal void FadeIn(int offset)
     {
         endalpha = 100 - offset;
-        Debug.Log(endalpha + " = endalpha");
         StartCoroutine("ColoFadeIn");
     }
 
