@@ -38,8 +38,8 @@ public class Snack : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
+            gameHandler.incrementScore();
             gameHandler.createReverseSnake(state, stateCount, tails);
-            gameHandler.incrementScore(1);
             gameHandler.createSnack();
             audioSource.PlayOneShot(audioClip);
             collision.gameObject.GetComponent<Head>().growTail();

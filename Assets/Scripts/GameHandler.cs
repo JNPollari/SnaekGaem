@@ -27,7 +27,9 @@ public class GameHandler : MonoBehaviour
         textField = text;
     }
 
+    private int snacksEaten = 0;
     private int score = 0;
+    private int shadowSnakes = 0;
     [SerializeField]
     private int offset = 5; // Offset between tail pieces.
 
@@ -56,9 +58,11 @@ public class GameHandler : MonoBehaviour
         if (Input.GetButtonDown("Cancel")) SceneManager.LoadScene("menuscene");
     }
     
-    internal void incrementScore(int inc) {
-        score += inc;
-        textField.text = "Score " + score.ToString();
+    internal void incrementScore() {
+        snacksEaten++;
+        score += 1 + shadowSnakes;
+        //textField.text = "Score " + snacksEaten.ToString();
+        textField.text = "Snacks " + snacksEaten + ", Score " + score.ToString();
     }
 
     internal void createSnack() {
@@ -81,8 +85,14 @@ public class GameHandler : MonoBehaviour
 
     }
 
+    internal void DecrementShadows()
+    {
+        shadowSnakes--;
+    }
+
     internal void createReverseSnake(State state, int stateCount, int tails) {
         ReverseHead _reverseSnake = Instantiate(reverseSnake, state.GetPosition(), state.GetRotation());
-        _reverseSnake.Initialize(states, state, stateCount + 5 * snakehead.GetTails(), startTime, offset, tails);
+        shadowSnakes++;
+        _reverseSnake.Initialize(states, state, stateCount + 5 * snakehead.GetTails(), startTime, offset, tails, this);
     }
 }
