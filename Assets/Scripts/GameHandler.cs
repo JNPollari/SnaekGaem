@@ -85,8 +85,18 @@ public class GameHandler : MonoBehaviour
 
     }
 
-    internal void DecrementShadows()
+    internal void DecrementShadows(bool delay)
     {
+        if (delay)
+        {
+            StartCoroutine("ShadowDecrementator");
+        } else shadowSnakes--;
+
+    }
+
+    IEnumerator ShadowDecrementator()
+    {
+        yield return new WaitForSeconds(2);
         shadowSnakes--;
     }
 

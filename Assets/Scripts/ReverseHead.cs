@@ -56,7 +56,7 @@ public class ReverseHead : MonoBehaviour
             if (notDestroyed)
             {
                 notDestroyed = false;
-                gh.DecrementShadows();
+                gh.DecrementShadows(true);
             }
             Destroy(gameObject, 2);
         }
@@ -91,7 +91,7 @@ public class ReverseHead : MonoBehaviour
         if (notDestroyed)
         {
             notDestroyed = false;
-            gh.DecrementShadows();
+            gh.DecrementShadows(false);
         }
         if (tail != null) tail.DemolishAll();
         Destroy(gameObject);
