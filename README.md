@@ -1,6 +1,6 @@
 # Snake Gaem
 
-This was a project I worked on during Junction 2019
+This was a project I worked on during Junction 2019 with Severi and Giovanni
 
 ## Getting Started
 
