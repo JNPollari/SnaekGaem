@@ -13,5 +13,5 @@ To run and modify the project, you will need Unity game engine with c# editor. Y
 ## Authors
 
 * [Joonas Pollari](https://github.com/JNPollari)
-* Severi Jääskeläinen
+* [Severi Jääskeläinen](https://github.com/severij)
 * Giovanni Misitano
